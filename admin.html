@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To Sam</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #000000 10%, #1a001f 90%);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Particle background */
+    .particle {
+      position: absolute;
+      background: #aa00ff;
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: float 10s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-100px) scale(1.5); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.75);
+      border: 3px solid #aa00ff;
+      border-radius: 25px;
+      padding: 40px;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0 0 40px #aa00ff, 0 0 10px #6b008d inset;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container h1 {
+      font-size: 3rem;
+      color: #d580ff;
+      margin-bottom: 25px;
+      text-shadow: 0 0 20px #aa00ff;
+    }
+
+    .container p {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #ffffff;
+      text-align: justify;
+      padding: 0 10px;
+      background: rgba(30, 0, 45, 0.3);
+      border-radius: 15px;
+      box-shadow: inset 0 0 15px #6a00a3;
+      padding: 20px;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    button {
+      background: transparent;
+      border: 2px solid #aa00ff;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 14px 30px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #aa00ff;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #aa00ff;
+      color: #000;
+    }
+
+    .image-spawn {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      animation: floatUp 2s ease-out forwards;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-100px) scale(1.2); }
+    }
+
+    /* Music toggle button in bottom-right */
+    #toggleMusic {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: transparent;
+      border: 2px solid #aa00ff;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 10px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 15px #aa00ff;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    #toggleMusic:hover {
+      background: #aa00ff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("particle");
+      dot.style.width = dot.style.height = Math.random() * 5 + 2 + "px";
+      dot.style.top = Math.random() * 100 + "%";
+      dot.style.left = Math.random() * 100 + "%";
+      dot.style.animationDuration = (Math.random() * 10 + 5) + "s";
+      document.body.appendChild(dot);
+    }
+  </script>
+
+  <div class="container">
+    <h1>To Sam </h1>
+    <p style="max-height: 500px; overflow-y: auto;">
+  Hindi ko alam kung may nagawa akong mali, and eto yung way na alam ko mag reach out sayo. Gusto ko lang sanang kumustahin ka at ayusin kung sakaling may mga bagay akong nagawa na hindi naging okay para sayo.
+  <br><br>
+  Hindi ako sigurado kung napansin ko lahat ng dapat kong mapansin. Pero gusto ko lang malaman mo na gusto ko talagang intindihin alamin kung ano nafifeel mo. Hindi dahil gusto kong iclear ang sarili ko, kundi dahil sobrang importante sakin kung ano yung nafifeel mo. Kung may pagkukulang ako, gusto kong harapin yun ng maayos. Kaya kahit hindi ko pa alam kung saan ako nagkulang, gusto ko nang magreach out. Kasi hindi ko gustong hayaan na may bigat kang nararamdaman na galing sa akin. I'm really sorry Sam ko.
+  <br><br>
+  Ginagawa ko na to nung hindi ka nagrereply sa kin kaya iba yung message ko sana. Pero nung nabasa ko na yung message mo, mas lalo kong narealize na may something na pala talagang akong nagagawa na nakakasakit na sayo. Kaya una sa lahat, gusto kong sabihin na naiintindihan ko. Naiintindihan ko kung bakit mo naramdaman lahat ng yun, at kung bakit mo naisip na siguro mas okay nang huwag icontinue.
+  <br><br>
+  I know na hindi madaling sabihin sayo yung mga ganyang bagay. Hindi madali aminin na nasasaktan ka. Lalo na kung may mga pinagdaanan ka na dati na hindi mo na gustong maulit. Kaya gusto kong malaman mo na hindi ko binabaliwala yung naramdaman mo. Valid lahat ng nararamdaman mo.
+  <br><br>
+  Tama ka, minsan isang simpleng message lang na "sorry busy lang lately baka hindi muna ako makachat ng madalas", malaking bagay na yun. Hindi mo hinihingi ang sobra. You just wanted reassurance, clarity, and consistency na dapat alam ko dapat sa sarili ko na bare minimum yun. And if I failed to give that, naiintindihan ko kung bakit ka umatras. It takes strength to walk away from something that feels unsure, lalo na you learned na sa pinagdaanan mo before.
+  <br><br>
+  Wala akong karapatan pilitin kang magstay kung hindi ka na okay. Pero gusto ko lang malaman mo na kahit hindi mo pinili na ituloy pa to, hindi ka naging mahirap mahalin. Hindi ka naging "too much". Isa ka lang sa mga taong marunong pahalagahan ang sarili nila and I failed to give that when I should've. I should become a better man. The man you truly deserve. And believe me when I say na gusto ko talagang ibigay sayo yung treatment na deserve mo. Kasi sa totoo lang, ang dali mong mahalin.
+  <br><br>
+  Kung ito na ang dulo para sayo, okay lang. Pero kung if ever lang, kahit sa maliit na chance, na dumating yung araw na need mo ng kausap, andito lang ako always. Hindi para pilitin. Hindi para kulitin. Pero para ipaalala na may isang tao pa rin na handang makinig sayo.
+  <br><br>
+  At kung sa tingin mo makakatulong para mas gumaan ang pakiramdam mo, okay lang din kung iunfriend mo ako, or iblock mo ako, kung yun yung paraan para magkaroon ka ng peace or closure. Walang sama ng loob. I will wholeheartedly respect and accept yun.
+  <br><br>
+  Thank you sa lahat. Sa daldalan, sa chance, sa presence mo, kahit sandali lang yun. Sana sa mga susunod mong hakbang, bitbit mo yung peace na deserve mo. I just regret na hindi mo na ako kasama. Pero kahit ganon, for me, it was all worth it.
+  <br><br>
+  Ingat ka palagi, Sam.
+</p>
+    <div class="buttons">
+      <button id="continueBtn">Continue</button>
+      <button id="endBtn">End</button>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="bgaudio.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music Toggle Button -->
+  <button id="toggleMusic">🔊</button>
+
+  <script>
+    const endBtn = document.getElementById("endBtn");
+    let clickCount = 0;
+
+    endBtn.addEventListener("click", () => {
+      clickCount++;
+
+      const img = document.createElement("img");
+      img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG_eHHrW-danYarO7XDunN2mtf0Hc9yJEkA&s";
+      img.classList.add("image-spawn");
+      img.style.top = Math.random() * 80 + 10 + "%";
+      img.style.left = Math.random() * 80 + 10 + "%";
+        img.style.width = "100px"; // ← larger width
+        img.style.height = "100px"; // ← larger height
+      document.body.appendChild(img);
+
+      endBtn.style.transform = `scale(${1 - clickCount * 0.1})`;
+
+      if (clickCount >= 7) {
+        endBtn.disabled = true;
+        endBtn.textContent = "...";
+      }
+    });
+
+    document.getElementById("continueBtn").addEventListener("click", () => {
+      window.open("https://www.facebook.com/YOUR_PROFILE_LINK", "_blank");
+    });
+
+    const bgMusic = document.getElementById("bg-music");
+    const toggleMusic = document.getElementById("toggleMusic");
+
+    toggleMusic.addEventListener("click", () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        toggleMusic.textContent = "🔊";
+      } else {
+        bgMusic.pause();
+        toggleMusic.textContent = "🔇";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>F. Samantha</title>
+  <script defer src="login.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    /* 💜 Floating Neon Hearts */
+    .floating-heart {
+      position: fixed;
+      font-size: 24px;
+      color: #e066ff;
+      text-shadow: 0 0 8px #e066ff, 0 0 16px #a020f0;
+      animation: floatUp 8s linear infinite;
+      pointer-events: none;
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) translateX(30px);
+        opacity: 0;
+      }
+    }
+
+    /* Add variation using nth-child */
+    .floating-heart:nth-child(odd) {
+      animation-duration: 10s;
+    }
+
+    .floating-heart:nth-child(even) {
+      animation-duration: 12s;
+    }
+
+    .floating-heart-left {
+      left: 20px;
+    }
+
+    .floating-heart-right {
+      right: 20px;
+    }
+
+    .login-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      width: 800px;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #1e1e2f;
+      box-shadow: 0 0 20px #a020f0;
+      animation: fadeIn 1s ease-out;
+      z-index: 1;
+    }
+
+    .login-left {
+      background-color: #6a0dad;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .login-left img {
+      max-width: 250px;
+      max-height: 250px;
+    }
+
+    .login-right {
+      width: 50%;
+      background-color: #121212;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #eee;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-right h2 {
+      margin-bottom: 10px;
+      color: #e0b3ff;
+      font-size: 26px;
+    }
+
+    .login-right h4 {
+      margin-bottom: 30px;
+      color: #b380ff;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .login-right input {
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid #6600cc;
+      border-radius: 12px;
+      font-size: 16px;
+      background-color: #2a2a3a;
+      color: #fff;
+    }
+
+    .login-right input:focus {
+      border-color: #9933ff;
+      background-color: #3a3a4a;
+      outline: none;
+    }
+
+    .login-right button {
+      width: 100%;
+      padding: 15px;
+      background-color: #9933ff;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 0 15px #cc66ff;
+    }
+
+    .login-right button:hover {
+      background-color: #b266ff;
+      transform: scale(1.05);
+    }
+
+    .footer-text {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+      text-align: center;
+    }
+
+    .footer-text a {
+      color: #a160f0;
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .login-container {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        top: 30%;
+      }
+
+      .login-left, .login-right {
+        width: 100%;
+      }
+    }
+
+    .glow {
+      box-shadow: 0 0 10px #cc33ff;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.88);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      display: none;
+    }
+
+    .modal-content {
+      background: #2a004f;
+      padding: 50px;
+      border-radius: 24px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 50px #b266ff;
+      animation: popupFade 0.4s ease-out;
+      width: 500px;
+    }
+
+    .modal-img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 25px;
+    }
+
+    .modal-content h3 {
+      color: #c599ff;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .modal-content p {
+      font-size: 17px;
+      color: #dbbfff;
+      margin-bottom: 25px;
+    }
+
+    .modal-content button {
+      background-color: #9933ff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px #a060ff;
+    }
+
+    .modal-content button:hover {
+      background-color: #b266ff;
+      transform: scale(1.05);
+    }
+
+    @keyframes popupFade {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Loading Screen */
+    #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    #loadingScreen .welcome-text {
+      font-size: 2.5rem;
+      color: #e6ccff;
+      text-shadow: 0 0 12px #a020f0;
+      margin-bottom: 30px;
+      animation: slideIn 1s ease-out;
+      text-align: center;
+    }
+
+    #loadingImage {
+      width: 700px;
+      height: 800px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline id="bgVideo">
+    <source src="bgvid.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="overlay"></div>
+
+  <!-- Floating Hearts -->
+  <script>
+    for (let i = 0; i < 10; i++) {
+      const heartLeft = document.createElement("div");
+      heartLeft.className = "floating-heart floating-heart-left";
+      heartLeft.style.top = `${Math.random() * 100}vh`;
+      heartLeft.style.left = `${Math.random() * 50}px`;
+      heartLeft.innerText = "💜";
+      document.body.appendChild(heartLeft);
+
+      const heartRight = document.createElement("div");
+      heartRight.className = "floating-heart floating-heart-right";
+      heartRight.style.top = `${Math.random() * 100}vh`;
+      heartRight.style.right = `${Math.random() * 50}px`;
+      heartRight.innerText = "💜";
+      document.body.appendChild(heartRight);
+    }
+  </script>
+
+  <!-- Login Form -->
+  <div class="login-container">
+    <div class="login-left">
+      <img src="logo.png" alt="Logo">
+    </div>
+
+    <div class="login-right">
+      <h2>Safe Space for Sam 💜</h2>
+      <h4>Your calm in the chaos. A soft place in a world that never stops!</h4>
+
+      <form onsubmit="return loginUser(event)">
+        <input type="text" id="username" placeholder="🌙 Username (e.g. Exzur Ken)" required>
+        <input type="password" id="password" placeholder="🔐 Password (e.g. 05162004)" required>
+        <button type="submit" class="glow">Log in</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div id="errorModal" class="modal">
+    <div class="modal-content">
+      <img src="source.gif" alt="Access Denied" class="modal-img">
+      <h3>You're not Sam!!!</h3>
+      <p>This is for Franchesca Samantha only. </p>
+      <button onclick="closeModal()">Okay</button>
+    </div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen">
+    <div class="welcome-text">Welcome to your safe space, Franchesca Samantha </div>
+    <img src="bgimage2.png" alt="Loading Image" id="loadingImage" />
+  </div>
+
+  <script>
+    function loginUser(event) {
+      event.preventDefault();
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+
+      let adminUsername = "Franchesca Samantha";
+      let adminPassword = "07192003";
+
+      if (username === adminUsername && password === adminPassword) {
+        document.querySelector('.login-container').style.display = 'none';
+        document.getElementById("loadingScreen").style.display = "flex";
+
+        setTimeout(() => {
+          window.location.href = "admin.html";
+        }, 7000); // 7 seconds
+      } else {
+        showModal();
+      }
+    }
+
+    function showModal() {
+      document.getElementById("errorModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("errorModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
